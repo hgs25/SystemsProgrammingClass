@@ -1,0 +1,73 @@
+#!/bin/bash
+#countf
+#recursively counts the number of files or directories in a given directory
+#if no input, counts the number of files or directories in the current directory
+#if directories specified, count the number of files/directories in the given directory
+#if -help is inputted, instructions for script will show.
+
+total=0
+fileCount=0
+directCount=0
+i=1
+
+function count
+{
+  echo "count argument is $1"
+
+  #This block sets the directory if one is specified.
+  if [ "$1" != "" ]; then
+    local currDirect=$(pwd)
+    cd
+    local directLoc=$(find . -name $1)
+    echo "directLoc = $directLoc"
+    if [ "$direcLoc" != "" ]; then
+      echo "Theres a directory"
+      cd $direcLoc
+      pwd
+    else
+      printf "directory $1 does not exist. Please check spelling and capitalization.\n\n"
+      cd $currDirect
+      pwd
+      return
+    fi
+  fi
+
+  #Begin counting files
+  for file in *; do
+    if [ -f $file ]; then
+      printf "found a file @ "
+      pwd
+      ((total++))
+      ((fileCount++))
+    elif [ -d $file ]; then
+      printf "found a directory @ "
+      pwd
+      ((total++))
+      ((directCount++))
+      count $file
+      cd .. #go bck to previous directory
+      continue
+    fi
+  done
+}
+
+function help
+{
+  printf "This program counts the number of files and directories in a given directory.\n\nIf no argument is given, the program will count the files from the the current directory.\n\nIf a directory is specified, the program will start counting from that directory.\n\nTo input a directory, call the program followed by '-d DirectoryName'.\n"
+}
+
+echo 'Type -h as an argument for help and list of commands'
+echo "1st argument is $1"
+if [ "$1" == "-h" ];  then
+  help
+elif [ "$1" != "" ]; then
+  while [ "$1" != "" ]; do
+    count $@
+    shift
+  done
+else
+  count
+fi
+pwd
+printf "The total number of items is  $total\nThe number of files is $fileCount\nThe number of directories is $directCount\n"
+exit 0

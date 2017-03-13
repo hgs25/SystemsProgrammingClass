@@ -1,0 +1,4 @@
+FILE *fp;
+  if(strcmp(tokens[1], ">") == 0)
+    fp = freopen(commands[1], "w+", stdout);
+  fclose(fp);

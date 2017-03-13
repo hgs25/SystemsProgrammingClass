@@ -1,0 +1,40 @@
+/*
+struct tokenList
+{
+  char tokString;
+  int key;
+  struct node * next;
+}
+struct node * head == NULL;
+struct node * current == NULL;
+
+void listAdd(char tokString, int key)
+*/
+/*
+char makeTok(char string)
+{
+  int i=0, j=0;
+  char temp[50];
+  while(input[i] != '\0')
+  {
+    if(input[i] == ' ' || input[i] == '\t' || input[i] == '|' || input[i] == '<' || input[i] == '>' || input[i] == '<<' || input[i] == '>>')
+    {
+      if(input[i] == '<' || input[i] == '>' || input[i] == '<<' || input[i] == '>>')
+      {
+        char tok[sizeof(temp)/sizeof(temp[0])+1];
+        strcpy(tok ,temp);
+      }
+      else
+      {
+
+      }
+    }
+    else
+    {
+      temp[j] == input[i];
+      j++;
+    }
+    i++;
+  }
+}
+*/
